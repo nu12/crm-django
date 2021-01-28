@@ -1,20 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-# Models: representation of database schema
+class User(AbstractUser): # Need to specify custom User model in settings.py
+    pass
 
 class Lead(models.Model):
-    SOURCE_CHOICES = (
-        ('Youtube','Youtube'), # (DATABASE VALUE, DISPLAY VALUE)
-        ('Google','Google'),
-        ('Newsletter','Newsletter'),
-    )
-
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     age = models.IntegerField(default=0)
+    # on_delete: CASCADE, SET_NULL, SET_DEFAULT
+    agent = models.ForeignKey("Agent", on_delete=models.CASCADE)
 
-    phoned = models.BooleanField(default=False)
-    source = models.CharField(choices=SOURCE_CHOICES, blank=True, max_length=100)
-
-    profile_picture = models.ImageField(blank=True, null=True)
-    special_files = models.FileField(blank=True, null=True)
+class Agent(models.Model):
+    user = models.OneToOneField("User", on_delete=models.CASCADE)
