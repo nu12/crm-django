@@ -7,8 +7,12 @@
 </head>
 <body>
     <h1>Home Page</h1>
-    <p>Hello, {{ name }}!</p>
-    <p>Age: {{ age }}!</p>
+    <ul>
+        {% for lead in leads %}
+        <li>{{ lead }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ leads }}!</p>
 
 </body>
 </html>
