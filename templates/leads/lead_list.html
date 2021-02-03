@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is all about leads</h1>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+        {% for lead in leads %}
+        <tr>
+            <td>{{ lead.id }}</td>
+            <td>{{ lead.first_name }}</td>
+            <td>{{ lead.last_name }}</td>
+            <td>{{ lead.age }}</td>
+            <td><a href="/leads/{{ lead.id }}" >Detail</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
