@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Lead, Agent
-from .forms import LeadForm, LeadModelForm
+from .forms import LeadModelForm
 
 # Create your views here.
 
