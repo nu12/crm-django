@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from leads.views import lead_list, lead_detail, lead_create, lead_update
+from leads.views import lead_list, lead_detail, lead_create, lead_update, lead_delete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -9,4 +9,6 @@ urlpatterns = [
     path('leads/create', lead_create),
     path('leads/<int:id>', lead_detail),
     path('leads/<int:id>/update', lead_update),
+    path('leads/<int:id>/update', lead_update),
+    path('leads/<int:id>/delete', lead_delete),
 ]

@@ -14,7 +14,7 @@
             <th>First name</th>
             <th>Last name</th>
             <th>Age</th>
-            <th rowspan="2">Actions</th>
+            <th rowspan="3">Actions</th>
         </thead>
         <tbody>
         {% for lead in leads %}
@@ -25,6 +25,7 @@
             <td>{{ lead.age }}</td>
             <td><a href="/leads/{{ lead.id }}" >Detail</a></td>
             <td><a href="/leads/{{ lead.id }}/update" >Update</a></td>
+            <td><a href="/leads/{{ lead.id }}/delete" >Delete</a></td>
         </tr>
         {% endfor %}
         </tbody>
