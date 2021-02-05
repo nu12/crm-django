@@ -29,3 +29,17 @@ def lead_create(request):
         "form": form
     }
     return render(request, "leads/lead_create.html", context)
+
+def lead_update(request, id):
+    lead = Lead.objects.get(id=id)
+    form = LeadModelForm(instance=lead)
+    if request.method == "POST":
+        form = LeadModelForm(request.POST,instance=lead)
+        if form.is_valid():
+            form.save()
+            return redirect("/leads") 
+    context = {
+        "lead": lead,
+        "form": form
+    }
+    return render(request, "leads/lead_update.html", context)
