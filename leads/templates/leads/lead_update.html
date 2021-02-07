@@ -7,8 +7,12 @@
 </head>
 <body>
     <h1>This is all about leads</h1>
-    <h2>Detail {{ lead }} </h2>
-    <a href="/leads">Go back to leads</a>
-
+    <h2>Update lead</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+    <a href="{% url 'leads:list' %}">Go back to leads</a>
 </body>
 </html>

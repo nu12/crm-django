@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>This is all about leads</h1>
-    <a href="/leads/create">Create new lead</a>
+    <a href="{% url 'leads:create' %}">Create new lead</a>
     <table>
         <thead>
             <th>ID</th>
@@ -23,9 +23,9 @@
             <td>{{ lead.first_name }}</td>
             <td>{{ lead.last_name }}</td>
             <td>{{ lead.age }}</td>
-            <td><a href="/leads/{{ lead.id }}" >Detail</a></td>
-            <td><a href="/leads/{{ lead.id }}/update" >Update</a></td>
-            <td><a href="/leads/{{ lead.id }}/delete" >Delete</a></td>
+            <td><a href="{% url 'leads:detail' lead.id %}" >Detail</a></td>
+            <td><a href="{% url 'leads:update' lead.id %}" >Update</a></td>
+            <td><a href="{% url 'leads:delete' lead.id %}" >Delete</a></td>
         </tr>
         {% endfor %}
         </tbody>
