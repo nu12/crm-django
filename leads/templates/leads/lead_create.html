@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>This is all about leads</h1>
+{% extends "base.html" %}
+
+{% block content %}
+
     <h2>Create lead</h2>
     <form method="POST">
         {% csrf_token %}
@@ -14,5 +9,5 @@
         <button type="submit">Create</button>
     </form>
     <a href="{% url 'leads:list' %}">Go back to leads</a>
-</body>
-</html>
+
+{% endblock content %}
