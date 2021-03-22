@@ -2,9 +2,9 @@ from django.core.mail import send_mail
 from django.contrib.auth.mixins import LoginRequiredMixin
 from agents.mixins import OrganisorAndLoginRequiredMixin
 from django.shortcuts import render, redirect, reverse
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from .models import Lead, Agent
-from .forms import LeadModelForm, CustomUserCreationForm
+from .forms import LeadModelForm, CustomUserCreationForm, AssignAgentForm
 
 class SignupView(CreateView):
     template_name = "registration/signup.html"
@@ -100,5 +100,27 @@ class LeadDeleteView(OrganisorAndLoginRequiredMixin, DeleteView):
             queryset = queryset.filter(agent__user = user)
         return queryset # Django calls the database based on the filters
     
+    def get_success_url(self):
+        return reverse("leads:list")
+
+class AssignAgentView(OrganisorAndLoginRequiredMixin, FormView):
+    template_name = "leads/assign_agent.html"
+    form_class = AssignAgentForm
+
+    # Pass extra arguments to the form
+    def get_form_kwargs(self,**kwargs):
+        kwargs = super(AssignAgentView, self).get_form_kwargs(**kwargs)
+        kwargs.update( {
+            "request": self.request
+        })
+        return kwargs
+
+    def form_valid(self, form):
+        agent = form.cleaned_data['agent']
+        lead = Lead.objects.get(id=self.kwargs['pk'])
+        lead.agent = agent
+        lead.save()
+        return super(AssignAgentView, self).form_valid(form)
+
     def get_success_url(self):
         return reverse("leads:list")

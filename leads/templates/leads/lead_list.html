@@ -69,7 +69,7 @@
             <div class="flex-grow">
               <h2 class="text-gray-900 text-lg title-font font-medium mb-3">{{ lead.first_name }} {{ lead.last_name }}</h2>
               <p class="leading-relaxed text-base">Click belw to see more detail about this lead.</p>
-              <a href="{% url 'leads:detail' lead.id %}" class="mt-3 text-indigo-500 inline-flex items-center">Go to lead
+              <a href="{% url 'leads:assign' lead.id %}" class="mt-3 text-indigo-500 inline-flex items-center">Assign an agent
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                   <path d="M5 12h14M12 5l7 7-7 7"></path>
                 </svg>
