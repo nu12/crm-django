@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'leads',
-    'agents'
+    'agents',
+    'crispy_forms',
+    'crispy_tailwind',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +138,6 @@ LOGIN_REDIRECT_URL = "/leads/"
 LOGOUT_REDIRECT_URL = "/leads/"
 
 LOGIN_URL = "/login/"
+
+CRISPY_TEMPLATE_PACK = 'tailwind'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
