@@ -18,6 +18,7 @@ class Lead(models.Model):
     age = models.IntegerField(default=0)
     organisation = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     agent = models.ForeignKey("Agent", null=True, blank=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey("Category",on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.first_name
@@ -27,6 +28,13 @@ class Agent(models.Model):
     organisation = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     def __str__(self):
         return self.user.username
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
 
 def post_user_created_signal(sender, instance, created, **kwargs):
     if created: # Created or Updated?
