@@ -14,6 +14,7 @@
           <tr>
             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">First name</th>
             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Last name</th>
+            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -22,6 +23,9 @@
           <tr>
             <td class="px-4 py-3">{{ lead.first_name }}</td>
             <td class="px-4 py-3">{{ lead.last_name }}</td>
+            <td class="px-4 py-3">
+                <a href="{% url 'leads:detail' lead.id %}" >Edit</a>
+            </td>
           </tr>
         {% endfor %}
           

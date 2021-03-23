@@ -4,7 +4,7 @@ from agents.mixins import OrganisorAndLoginRequiredMixin
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from .models import Lead, Agent, Category
-from .forms import LeadModelForm, CustomUserCreationForm, AssignAgentForm
+from .forms import LeadModelForm, CustomUserCreationForm, AssignAgentForm, LeadCategoryUpdateForm
 
 class SignupView(CreateView):
     template_name = "registration/signup.html"
@@ -161,3 +161,19 @@ class CategoryDetailView(LoginRequiredMixin, DetailView):
         else:
             queryset = Category.objects.filter(organisation = user.agent.organisation)
         return queryset
+
+class LeadCategoryUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = "leads/lead_category_update.html"
+    form_class = LeadCategoryUpdateForm
+    
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_organisor:
+            queryset = Lead.objects.filter(organisation = user.userprofile)
+        else:
+            queryset = Lead.objects.filter(organisation = user.agent.organisation)
+            queryset = queryset.filter(agent__user = user)
+        return queryset # Django calls the database based on the filters
+
+    def get_success_url(self):
+        return reverse("leads:detail", kwargs={"pk": self.get_object().id})
