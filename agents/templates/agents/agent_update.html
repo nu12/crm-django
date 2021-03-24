@@ -23,7 +23,6 @@
         <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{agent.user.username}}</h1>
         <div class="flex mb-4">
           <a href="{% url 'agents:detail' agent.id %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Details</a>
-          <a class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Reviews</a>
           <a href="{% url 'agents:update' agent.id %}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">Update</a>
         </div>
 

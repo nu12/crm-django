@@ -20,7 +20,7 @@
     {% if request.user.is_authenticated %}
     Agent: {{ request.user.username }}
     {% else %}
-    <button class="inline-flex items-center bg-blue-300 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+    <button class="inline-flex items-center bg-indigo-500 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-600 text-white rounded text-base mt-4 md:mt-0">
       <a href="{% url 'login'  %}">Log in</a>
       
     </button>
