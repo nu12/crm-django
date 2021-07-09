@@ -1,0 +1,24 @@
+version: '3'
+
+services: 
+    web:
+        build: .
+        container_name: djcrm
+        environment: 
+            ALLOWED_HOST: '*'
+            DEBUG: 'False'
+            SECRET_KEY: 'enter-value-here'
+            POSTGRES_PASSWORD: 'mysecretpassword'
+            POSTGRES_USER: 'djcrm'
+            POSTGRES_DB: 'djcrm'
+            POSTGRES_HOST: 'djcrm-postgres'
+            POSTGRES_PORT: 5432
+        ports: 
+            - "80:8000"
+    postgres:
+        image: postgres:latest
+        container_name: djcrm-postgres
+        environment: 
+            POSTGRES_PASSWORD: 'mysecretpassword'
+            POSTGRES_USER: 'djcrm'
+            POSTGRES_DB: 'djcrm'
